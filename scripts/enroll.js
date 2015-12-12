@@ -10,44 +10,44 @@ $(document).ready(function() {
 //  var zoomControl = new L.Control.Zoom({ position: 'topright'} );
 //  zoomControl.addTo(map);
   var map = L.mapbox.map('map', 'mapbox.dc-bright')
-	.setView([37.4669, 122.1397], 11);
+	.setView([38.9049,-77.0128], 11);
 	map.addLayer(L.mapbox.tileLayer('newamerica.dc-action-neighborhoods'));
-	
+
 	$.get('data/schools.json', function(schools){
 
 		var enroll = _.pluck(schools['schools'], 'enrollment')
 		var scale = d3.scale.linear()
 		  .domain([_.min(enroll), _.max(enroll)])
 		  .range([2,20])
-		  		  
+
 //		var allocs_6_8 = _.pluck(schools['middle'], 'alloc_per_student')
 //		var scale2 = d3.scale.linear()
 //		  .domain([_.min(allocs_6_8), _.max(allocs_6_8)])
 //		  .range([2,20])
-//		  		  
+//
 //		var allocs_9_12 = _.pluck(schools['high'], 'alloc_per_student')
 //		var scale3 = d3.scale.linear()
 //		  .domain([_.min(allocs_9_12), _.max(allocs_9_12)])
 //		  .range([2,20])
-		 	 							
+
 		schools.schools.forEach(function(school){
 			if ( school.lat !== undefined && school.long !== undefined){
 				var marker = new L.CircleMarker([school.lat, school.long], {fillColor: '#FF0000',color: 'black'}).setRadius(scale(school.enrollment)).bindPopup(school.name).addTo(map)
 			}
 		});
-		
+
 //		schools.middle.forEach(function(school){
 //			if ( school.lat !== undefined && school.long !== undefined){
 //				var marker = new L.CircleMarker([school.lat, school.long], {fillColor: '#FF0000',color: 'black'}).setRadius(scale2(school.alloc_per_student)).addTo(map)
 //			}
 //		});
-//		
+//
 //		schools.high.forEach(function(school){
 //			if ( school.lat !== undefined && school.long !== undefined){
 //				var marker = new L.CircleMarker([school.lat, school.long], {fillColor: '#FF0000',color: 'black'}).setRadius(scale3(school.alloc_per_student)).addTo(map)
 //			}
 //		});
-		
+
 	})
 
 	$.get('data/charters.json', function(schools){
@@ -56,35 +56,35 @@ $(document).ready(function() {
 		var scale = d3.scale.linear()
 		  .domain([_.min(enroll), _.max(enroll)])
 		  .range([2,20])
-		  		  
+
 //		var allocs_6_8 = _.pluck(schools['middle'], 'alloc_per_student')
 //		var scale2 = d3.scale.linear()
 //		  .domain([_.min(allocs_6_8), _.max(allocs_6_8)])
 //		  .range([2,20])
-//		  		  
+//
 //		var allocs_9_12 = _.pluck(schools['high'], 'alloc_per_student')
 //		var scale3 = d3.scale.linear()
 //		  .domain([_.min(allocs_9_12), _.max(allocs_9_12)])
 //		  .range([2,20])
-		 	 							
+
 		schools.charters.forEach(function(school){
 			if ( school.lat !== undefined && school.long !== undefined){
 				var marker = new L.CircleMarker([school.lat, school.long], {fillColor: '#0000FF',color: 'black'}).setRadius(scale(school.enrollment)).bindPopup(school.name).addTo(map)
 			}
 		});
-		
+
 //		schools.middle.forEach(function(school){
 //			if ( school.lat !== undefined && school.long !== undefined){
 //				var marker = new L.CircleMarker([school.lat, school.long], {fillColor: '#0000FF',color: 'black'}).setRadius(scale2(school.alloc_per_student)).addTo(map)
 //			}
 //		});
-//		
+//
 //		schools.high.forEach(function(school){
 //			if ( school.lat !== undefined && school.long !== undefined){
 //				var marker = new L.CircleMarker([school.lat, school.long], {fillColor: '#0000FF',color: 'black'}).setRadius(scale3(school.alloc_per_student)).addTo(map)
 //			}
 //		});
-		
+
 	})
 
 
@@ -94,35 +94,35 @@ $(document).ready(function() {
 //		var ch_scale = d3.scale.linear()
 //		  .domain([_.min(ch_allocs_kg_5), _.max(ch_allocs_kg_5)])
 //		  .range([2,20])
-//		  		  
+//
 //		var ch_allocs_6_8 = _.pluck(charters['ch_middle'], 'alloc_per_student')
 //		var ch_scale2 = d3.scale.linear()
 //		  .domain([_.min(ch_allocs_6_8), _.max(ch_allocs_6_8)])
 //		  .range([2,20])
-//		  		  
+//
 //		var ch_allocs_9_12 = _.pluck(charters['ch_high'], 'alloc_per_student')
 //		var ch_scale3 = d3.scale.linear()
 //		  .domain([_.min(ch_allocs_9_12), _.max(ch_allocs_9_12)])
 //		  .range([2,20])
-//		 	 							
+//
 //		charters.chelementary.forEach(function(charter){
 //			if ( charter.lat !== undefined && charter.long !== undefined){
 //				var marker = new L.CircleMarker([school.lat, school.long], {fillColor: '#000000',color: 'black'}).setRadius(ch_scale(charter.alloc_per_student)).addTo(map)
 //			}
 //		});
-//		
+//
 //		charters.ch_middle.forEach(function(charter){
 //			if ( charter.lat !== undefined && charter.long !== undefined){
 //				var marker = new L.CircleMarker([school.lat, school.long], {fillColor: '#000000',color: 'black'}).setRadius(ch_scale2(charter.alloc_per_student)).addTo(map)
 //			}
 //		});
-//		
+//
 //		charters.ch_high.forEach(function(charter){
 //			if ( charter.lat !== undefined && charter.long !== undefined){
 //				var marker = new L.CircleMarker([school.lat, school.long], {fillColor: '#000000',color: 'black'}).setRadius(ch_scale3(charter.alloc_per_student)).addTo(map)
 //			}
 //		});
-//		
+//
 //	})
 
 
